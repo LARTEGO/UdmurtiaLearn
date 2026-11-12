@@ -107,33 +107,31 @@ public static class Database
         account.ChangeName(newName);
         return true;
     }
-//    public static bool UpdateLevel(int id, int newLvl)
-//    {
-//        using var c = Open();
-//        try
-//        {
-//            var rows = c.Execute(
-//                """
-//                UPDATE accounts
-//                SET Level = @newLvl
-//                WHERE id = @id;
-//                """,
-//                new { newLvl, id });
-//            return rows > 0;
-//        }
-//        catch (SqliteException ex) when (ex.SqliteErrorCode == 19)
-//        {
-//            return false;
-//        }
-//    }
-//    public static bool ChangeLvl(Account account, int newLvl)
-//    {
-//        if (!UpdateLevel
-//        return(account.LvlSet(Level));
-//    }
-
-//    public static void IncLvl(Account account)
-//    {
-//        account.LvlInc();
-//    }
+    public static bool UpdateLevel(int id, int newLvl)
+    {
+        using var c = Open();
+        try
+        {
+            var rows = c.Execute(
+                """
+                UPDATE accounts
+                SET Level = @newLvl
+                WHERE id = @id;
+                """,
+                new { newLvl, id });
+            return rows > 0;
+        }
+        catch (SqliteException ex) when (ex.SqliteErrorCode == 19)
+        {
+            return false;
+        }
+    }
+    public static bool ChangeLvl(Account account, int newLvl)
+    {
+        if (!UpdateLevel(account.id, newLvl))
+        {
+            return(account.LvlSet(Level));
+        }
+        return true;
+    }
 }

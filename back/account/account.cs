@@ -24,11 +24,6 @@ namespace AccountModel
             return true;
         }
 
-        public void LvlInc ()
-        {
-            Level++;
-        }
-
         public bool LvlSet (int LevelThatSets)
         {
             if (LevelThatSets >= 1)
