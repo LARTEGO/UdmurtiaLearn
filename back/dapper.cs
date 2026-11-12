@@ -128,9 +128,9 @@ public static class Database
     }
     public static bool ChangeLvl(Account account, int newLvl)
     {
-        if (!UpdateLevel(account.id, newLvl))
+        if (!UpdateLevel(account.Id, newLvl))
         {
-            return(account.LvlSet(Level));
+            return(account.LvlSet(newLvl));
         }
         return true;
     }
